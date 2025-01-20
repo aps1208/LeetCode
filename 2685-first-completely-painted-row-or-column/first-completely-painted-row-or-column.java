@@ -1,29 +1,26 @@
 class Solution {
     public int firstCompleteIndex(int[] arr, int[][] mat) {
-        HashMap<Integer,Integer> map=new HashMap<>();
+        HashMap<Integer, int[]> map=new HashMap<>();
+        int row=mat.length,col=mat[0].length;
+        for(int i=0;i<row;i++)
+        {
+            for(int j=0;j<col;j++)
+            {
+                map.put(mat[i][j], new int[]{i,j});
+            }
+        }
+        int[] rowCount=new int[row];
+        int[] colCount=new int[col];
         for(int i=0;i<arr.length;i++)
         {
-            map.put(arr[i],i);
-        }
-        int result=Integer.MAX_VALUE;
-        for(int i=0;i<mat.length;i++)
-        {
-            int temp=0;
-            for(int j=0;j<mat[0].length;j++)
+            int[] temp=map.get(arr[i]);
+            rowCount[temp[0]]++;
+            colCount[temp[1]]++;
+            if(rowCount[temp[0]]==col || colCount[temp[1]]==row)
             {
-                temp=Math.max(temp,map.get(mat[i][j]));
+                return i;
             }
-            result=Math.min(temp,result);
         }
-        for(int i=0;i<mat[0].length;i++)
-        {
-            int temp=0;
-            for(int j=0;j<mat.length;j++)
-            {
-                temp=Math.max(temp,map.get(mat[j][i]));
-            }
-            result=Math.min(temp,result);
-        }
-        return result;
+        return 0; 
     }
 }
