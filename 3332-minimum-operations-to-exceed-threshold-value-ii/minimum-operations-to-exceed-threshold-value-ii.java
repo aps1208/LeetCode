@@ -4,9 +4,9 @@ class Solution {
         int count=0;
         for(int i:nums)
         {
-            pq.add((long) i);
+            if(i<=k) pq.add((long) i);
         }
-        while(pq.peek()<k && pq.size()>=2)
+        while(pq.size()>=2 && pq.peek()<k)
         {
             long i=pq.poll(),j=pq.poll();
             long val=Math.min(i,j)*2+Math.max(i,j);
