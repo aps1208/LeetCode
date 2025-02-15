@@ -14,7 +14,8 @@
  * }
  */
 class Solution {
-    public void help(TreeNode root, PriorityQueue<Integer> que)
+    static PriorityQueue<Integer> que=new PriorityQueue<>();
+    public void help(TreeNode root)
     {
         if(root.left!=null || root.right!=null) que.add(root.val);
         if(root.left==null && root.right==null) 
@@ -22,19 +23,20 @@ class Solution {
             que.add(root.val);
             return;
         }
-        if(root.left!=null) help(root.left,que);
-        if(root.right!=null) help(root.right,que);
+        if(root.left!=null) help(root.left);
+        if(root.right!=null) help(root.right);
         return;
     }
     public int kthSmallest(TreeNode root, int k) {
-        PriorityQueue<Integer> que=new PriorityQueue<>();
-        help(root,que);
+        help(root);
         int i=1;
         while(i<k)
         {
             que.poll();
             i++;
         }
-        return que.poll();
+        int ans=que.poll();
+        que.clear();
+        return ans;
     }
 }
