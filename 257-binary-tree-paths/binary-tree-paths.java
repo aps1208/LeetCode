@@ -16,6 +16,7 @@
 class Solution {
     public void help(TreeNode root, StringBuilder str, List<String> list)
     {
+        if(root==null) return;
         int len=str.length();
         str.append(root.val);
         str.append("->");
@@ -24,8 +25,8 @@ class Solution {
             str.setLength(str.length()-2);
             list.add(str.toString());
         }
-        if(root.left!=null) help(root.left, str, list);
-        if(root.right!=null) help(root.right, str, list);
+        help(root.left, str, list);
+        help(root.right, str, list);
         str.setLength(len);
     }
     public List<String> binaryTreePaths(TreeNode root) {
