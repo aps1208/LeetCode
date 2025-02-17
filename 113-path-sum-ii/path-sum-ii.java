@@ -14,8 +14,7 @@
  * }
  */
 class Solution {
-    static List<List<Integer>> result=new ArrayList<>();
-    public void help(TreeNode root, int sum, int targetSum, ArrayList<Integer> list)
+    public void help(TreeNode root, int sum, int targetSum, ArrayList<Integer> list, List<List<Integer>> result )
     {
         sum+=root.val;
         list.add(root.val);
@@ -35,7 +34,7 @@ class Solution {
             {
                 list1.add(i);
             }
-            help(root.left, sum, targetSum, list1);
+            help(root.left, sum, targetSum, list1, result);
         }
         if(root.right!=null) 
         {
@@ -44,16 +43,14 @@ class Solution {
             {
                 list2.add(i);
             }
-            help(root.right, sum, targetSum, list2);
+            help(root.right, sum, targetSum, list2, result);
         }
     }
     public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
-        if(root==null) return result;
         ArrayList<Integer> list=new ArrayList<>();
-        help(root, 0, targetSum, list);
-        List<List<Integer>> ans=new ArrayList<>();
-        for(List<Integer> i: result) ans.add(i);
-        result.clear();
-        return ans;
+        List<List<Integer>> result=new ArrayList<>();
+        if(root==null) return result;
+        help(root, 0, targetSum, list, result);
+        return result;
     }
 }
