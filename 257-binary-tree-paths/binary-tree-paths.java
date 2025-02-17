@@ -14,8 +14,7 @@
  * }
  */
 class Solution {
-    static ArrayList<String> list=new ArrayList<>();
-    public void help(TreeNode root, String str)
+    public void help(TreeNode root, String str, List<String> list)
     {
         if(root.left==null && root.right==null)
         {
@@ -24,13 +23,13 @@ class Solution {
             return;
         }
         str+=Integer.toString(root.val)+"->";
-        if(root.left!=null) help(root.left, str);
-        if(root.right!=null) help(root.right, str);
+        if(root.left!=null) help(root.left, str, list);
+        if(root.right!=null) help(root.right, str, list);
         return;
     }
     public List<String> binaryTreePaths(TreeNode root) {
-        list.clear();
-        help(root, "");
+        ArrayList<String> list=new ArrayList<>();
+        help(root, "", list);
         return list;
     }
 }
