@@ -19,13 +19,6 @@ class Solution {
     {
         sum+=root.val;
         list.add(root.val);
-        ArrayList<Integer> list1=new ArrayList<>();
-        ArrayList<Integer> list2=new ArrayList<>();
-        for(int i: list) 
-        {
-            list1.add(i);
-            list2.add(i);
-        }
         if(root.left==null && root.right==null && sum==targetSum)
         {
             result.add(list);
@@ -37,10 +30,20 @@ class Solution {
         }
         if(root.left!=null) 
         {
+            ArrayList<Integer> list1=new ArrayList<>();
+            for(int i: list) 
+            {
+                list1.add(i);
+            }
             help(root.left, sum, targetSum, list1);
         }
         if(root.right!=null) 
         {
+            ArrayList<Integer> list2=new ArrayList<>();
+            for(int i: list) 
+            {
+                list2.add(i);
+            }
             help(root.right, sum, targetSum, list2);
         }
     }
