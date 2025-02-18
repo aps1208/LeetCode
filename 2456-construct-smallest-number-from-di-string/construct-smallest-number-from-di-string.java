@@ -2,7 +2,7 @@ class Solution {
     public String smallestNumber(String pattern) {
         int smallVal=1, i=0,dcnt=0,icnt=0;
         StringBuilder str=new StringBuilder();
-        HashSet<Integer> set=new HashSet<>();
+        int[] arr=new int[10];
         while(i<pattern.length())
         {
             int j=i;
@@ -23,25 +23,25 @@ class Solution {
             }
             while(icnt>0)
             {
-                if(!set.contains(smallVal))
+                if(arr[smallVal]==0)
                 {
                     str.append(smallVal);
-                    set.add(smallVal);
+                    arr[smallVal]++;
                     icnt--;
                 }
                 smallVal++;
             }
             while(dcnt>0)
             {
-                if(!set.contains(bigVal))
+                if(arr[bigVal]==0)
                 {
                     str.append(bigVal);
-                    set.add(bigVal);
+                    arr[bigVal]++;
                     dcnt--;
                 }
                 bigVal--;
             }
-            while(set.contains(smallVal)) smallVal++;
+            while(smallVal<10 && arr[smallVal]==1) smallVal++;
             i=j;
         }
         return str.toString();
