@@ -15,14 +15,12 @@
  */
 class FindElements {
     static TreeNode temp=null;
-    public void help(TreeNode root)
+    public void help(TreeNode root,int n)
     {
         if(root==null) return;
-        int n=root.val;
-        if(root.left!=null) root.left.val=2*n+1;
-        if(root.right!=null) root.right.val=2*n+2;
-        help(root.left);
-        help(root.right);
+        root.val=n;
+        help(root.left,2*n+1);
+        help(root.right,2*n+2);
         return;
     }
     public boolean find(TreeNode root, int target)
@@ -33,8 +31,7 @@ class FindElements {
     }
     public FindElements(TreeNode root) {
         temp=root;
-        root.val=0;
-        help(root);
+        help(root,0);
     }
     
     public boolean find(int target) {
