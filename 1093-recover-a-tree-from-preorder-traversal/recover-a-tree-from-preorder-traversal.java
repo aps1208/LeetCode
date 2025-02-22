@@ -16,26 +16,27 @@
 class Solution {
     public TreeNode recoverFromPreorder(String traversal) {
         HashMap<Integer,TreeNode> map=new HashMap<>();
+        char[] arr=traversal.toCharArray();
         int i=0,val=0;
-        while(i<traversal.length() && traversal.charAt(i)!='-')
+        while(i<arr.length && arr[i]!='-')
         {
-            val=val*10+(traversal.charAt(i)-'0');
+            val=val*10+(arr[i]-'0');
             i++;
         }
         TreeNode root=new TreeNode(val);
         map.put(0,root);
-        while(i<traversal.length())
+        while(i<arr.length)
         {
             int cnt=0;
-            while(traversal.charAt(i)=='-')
+            while(arr[i]=='-')
             {
                 cnt++;
                 i++;
             }
             val=0;
-            while(i<traversal.length() && traversal.charAt(i)!='-')
+            while(i<arr.length && arr[i]!='-')
             {
-                val=val*10+(traversal.charAt(i)-'0');
+                val=val*10+(arr[i]-'0');
                 i++;
             }
             TreeNode temp=new TreeNode(val);
