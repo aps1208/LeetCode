@@ -1,25 +1,22 @@
 class Solution {
     public int[] applyOperations(int[] nums) {
-        for(int i=0;i<nums.length-1;i++)
+        int[] result=new int[nums.length];
+        int i=0,k=0;
+        while(i<nums.length-1)
         {
             if(nums[i]==nums[i+1])
             {
-                nums[i]=2*nums[i];
+                result[k]=nums[i]*2;
                 nums[i+1]=0;
             }
-        }
-        int k=0;
-        for(int i=0;i<nums.length;i++)
-        {
-            if(nums[i]!=0)
+            else
             {
-                int temp=nums[i];
-                nums[i]=nums[k];
-                nums[k]=temp;
-                k++;
+                result[k]=nums[i];
             }
+            i++;
+            if(nums[i-1]!=0) k++;
         }
-        return nums;
-        
+        if(nums[i]!=0) result[k]=nums[i];
+        return result;
     }
 }
