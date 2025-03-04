@@ -1,6 +1,6 @@
 class Solution {
     public boolean checkPowersOfThree(int n) {
-        HashSet<Integer> set=new HashSet<>();
+        int[] arr=new int[17];
         while(n>0)
         {
             int temp=1,cnt=0;
@@ -9,10 +9,10 @@ class Solution {
                 cnt++;
                 temp*=3;
             }
-            if(!set.contains(cnt))
+            if(arr[cnt]==0)
             {
                 n-=temp;
-                set.add(cnt);
+                arr[cnt]++;
             }
             else return false;
         }
