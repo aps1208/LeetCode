@@ -1,8 +1,7 @@
 class Solution {
     public boolean checkPowersOfThree(int n) {
         HashSet<Integer> set=new HashSet<>();
-        boolean flag=true;
-        while(n>0 && flag)
+        while(n>0)
         {
             int temp=1,cnt=0;
             while(temp*3<=n)
@@ -15,8 +14,8 @@ class Solution {
                 n-=temp;
                 set.add(cnt);
             }
-            else flag=false;
+            else return false;
         }
-        return n==0;
+        return true;
     }
 }
