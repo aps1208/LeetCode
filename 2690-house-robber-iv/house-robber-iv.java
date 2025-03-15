@@ -17,8 +17,8 @@ class Solution {
         int l=Integer.MAX_VALUE,h=0,result=0;
         for(int i:nums)
         {
-            l=Math.min(i,l);
-            h=Math.max(i,h);
+            if(i<l) l=i;
+            if(i>h) h=i;
         }
         while(l<=h)
         {
