@@ -14,11 +14,11 @@ class Solution {
         return cnt>=k;
     }
     public int minCapability(int[] nums, int k) {
-        int l=0,h=Integer.MAX_VALUE,result=0;
+        int l=Integer.MAX_VALUE,h=0,result=0;
         for(int i:nums)
         {
-            l=Math.min(l,i);
-            h=Math.max(h,i);
+            l=Math.min(i,l);
+            h=Math.max(i,h);
         }
         while(l<=h)
         {
