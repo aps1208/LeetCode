@@ -14,7 +14,7 @@ class Solution {
         return cnt>=k;
     }
     public int minCapability(int[] nums, int k) {
-        int l=Integer.MAX_VALUE,h=0,result=0;
+        int l=Integer.MAX_VALUE,h=1,result=0;
         for(int i:nums)
         {
             if(i<l) l=i;
