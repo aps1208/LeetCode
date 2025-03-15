@@ -1,5 +1,5 @@
 class Solution {
-    public int help(int mid,int[] nums)
+    public boolean help(int mid,int[] nums,int k)
     {
         int cnt=0,i=0;
         while(i<nums.length)
@@ -11,7 +11,7 @@ class Solution {
             }
             i++;
         }
-        return cnt;
+        return cnt>=k;
     }
     public int minCapability(int[] nums, int k) {
         int l=0,h=Integer.MAX_VALUE,result=0;
@@ -23,8 +23,7 @@ class Solution {
         while(l<=h)
         {
             int mid=(h+l)/2;
-            int val=help(mid,nums);
-            if(val>=k)
+            if(help(mid,nums,k))
             {
                 result=mid;
                 h=mid-1;
