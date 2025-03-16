@@ -1,7 +1,7 @@
 class Solution {
     public long repairCars(int[] ranks, int cars) {
-        long result=0,l=0,h=Integer.MAX_VALUE;
-        for(int i:ranks) h=Math.min(i,h);
+        long result=0,l=0,h=0;
+        for(int i:ranks) h=Math.max(i,h);
         h=h*cars*cars;
         while(l<=h)
         {
