@@ -1,18 +1,13 @@
 class Solution {
-    public boolean help(long mid, int[] ranks, int cars)
-    {
-        long cnt=0;
-        for(long i:ranks) cnt+=(long) Math.sqrt(mid/i);
-        return cnt>=cars;
-    }
     public long repairCars(int[] ranks, int cars) {
         long result=0,l=1,h=Integer.MAX_VALUE;
         for(int i:ranks) h=Math.min(i,h);
         h=h*cars*cars;
         while(l<=h)
         {
-            long mid=(l+h)/2;
-            if(help(mid,ranks,cars))
+            long mid=(l+h)/2,cnt=0;
+            for(long i:ranks) cnt+=(long) Math.sqrt(mid/i);
+            if(cnt>=cars)
             {
                 result=mid;
                 h=mid-1;
