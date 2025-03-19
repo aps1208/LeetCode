@@ -4,7 +4,7 @@ class Solution {
         while(l<=h)
         {
             int mid=l+(h-l)/2;
-            System.out.println(mid);
+
             if(arr[mid-1]<=arr[mid] && arr[mid+1]<=arr[mid])
             {
                 return mid;
