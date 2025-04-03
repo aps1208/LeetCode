@@ -1,11 +1,8 @@
 class Solution {
-    public void dfs(int[][] grid, int i, int j, Queue<Integer> que)
+    public void dfs(int[][] grid, int i, int j, Queue<tuple> que)
     {
         if(i<0 || j<0 || i==grid.length || j==grid.length || grid[i][j]==0 || grid[i][j]==2) return;
-        que.add(i);
-        que.add(j);
-        que.add(0);
-        grid[i][j]=2;
+        que.add(new tuple(i,j,0));
         grid[i][j]=2;
         dfs(grid, i, j-1, que);
         dfs(grid, i-1, j, que);
@@ -28,52 +25,45 @@ class Solution {
             }
         }
         
-        Queue<Integer> que=new LinkedList<>();
+        Queue<tuple> que=new LinkedList<>();
         dfs(grid,x,y,que);
 
         while(!que.isEmpty())
         {
-
-            int i=que.poll(),j=que.poll(),dist=que.poll();
+            tuple temp=que.poll();
+            int i=temp.x,j=temp.y,dist=temp.flips;
             if(grid[i][j]==1 || (i-1>=0 && grid[i-1][j]==1) || (j-1>=0 && grid[i][j-1]==1) || (i+1<n && grid[i+1][j]==1) || (j+1<n && grid[i][j+1]==1)) return dist;
             if(j-1>=0 && grid[i][j-1]==0)
             {
                 grid[i][j-1]=-1;
-                que.add(i);
-                que.add(j-1);
-                que.add(dist+1);
+                que.add(new tuple(i,j-1,dist+1));
             }
             if(i-1>=0 && grid[i-1][j]==0)
             {
                 grid[i-1][j]=-1;
-                que.add(i-1);
-                que.add(j);
-                que.add(dist+1);
+                que.add(new tuple(i-1,j,dist+1));
             }
             if(j+1<n && grid[i][j+1]==0)
             {
                 grid[i][j+1]=-1;
-                que.add(i);
-                que.add(j+1);
-                que.add(dist+1);
+                que.add(new tuple(i,j+1,dist+1));
             }
             if(i+1<n && grid[i+1][j]==0)
             {
                 grid[i+1][j]=-1;
-                que.add(i+1);
-                que.add(j);
-                que.add(dist+1);
+                que.add(new tuple(i+1,j,dist+1));
             }
         }
         return -1;
     }
 }
-
-
-
-
-
-
-
-
-
+class tuple
+{
+    int x,y,flips;
+    tuple(int x, int y, int flips)
+    {
+        this.x=x;
+        this.y=y;
+        this.flips=flips;
+    }
+}
